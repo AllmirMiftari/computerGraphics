@@ -10,7 +10,7 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.z = 1;
+camera.position.z = 8;
 
 // console.log(scene);
 
@@ -45,6 +45,7 @@ const axes = new THREE.AxesHelper(7);
 // cubeMesh.rotation.x = Math.PI *0.25;
 // cubeMesh.rotation.y = Math.PI *0.25;
 
+
 // cubeMesh.position.x = 0.7;
 // cubeMesh.position.y = -0.6;
 // cubeMesh.position.z = -1;
@@ -55,29 +56,28 @@ const axes = new THREE.AxesHelper(7);
 // cubeMesh.rotation.y = Math.PI *0.25;
 
 const group = new THREE.Group();
-// group.scale.y = 2;
-// group.rotation.y;
-
+group.scale.y=2;
+group.rotation.y;
 
 const cube1 = new THREE.Mesh(
-  new THREE.BoxGeometry(1,1,1),
+  new THREE.BoxGeometry(1, 1, 1),
   new THREE.MeshBasicMaterial({ color: "green" })
-)
+);
 cube1.position.x = -2;
 
-const cube2 = new THREE.Mesh(
-  new THREE.BoxGeometry(1,1,1),
-  new THREE.MeshBasicMaterial({ color: "white" })
-)
-cube2.position.x = 0;
-
-const cube3 = new THREE.Mesh(
-  new THREE.BoxGeometry(1,1,1),
+const cylinder = new THREE.Mesh(
+  new THREE.CylinderGeometry(1, 1, 2, 32),
   new THREE.MeshBasicMaterial({ color: "red" })
-)
-cube3.position.x = 2;
+);
+cylinder.position.x = 0;
 
-group.add(cube1, cube2, cube3);
+const capsule = new THREE.Mesh(
+  new THREE.CapsuleGeometry(1, 1, 4, 8),
+  new THREE.MeshBasicMaterial({ color: "white" })
+);
+capsule.position.x = 2;
+group.add(cube1, cylinder, capsule);
+
 scene.add(group);
 scene.add(axes);
 
@@ -89,3 +89,6 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+
+
+
